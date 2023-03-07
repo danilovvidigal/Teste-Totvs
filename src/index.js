@@ -14,16 +14,8 @@
  * @param numbers array de inteiros ou sub-arrays
  * @returns novo array, somente com os valores
  */
-function flatten(array) {
-  let result = [];
-
-  array.forEach((item) => {
-    if (Array.isArray(item)) {
-      result = result.concat(flatten(item));
-    } else {
-      result.push(item);
-    }
-  });
-
-  return result;
+ function flatten(array) {
+  return array.reduce((acc, curr) => {
+    return Array.isArray(curr) ? acc.concat(flatten(curr)) : acc.concat(curr);
+  }, []);
 }
